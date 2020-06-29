@@ -27,6 +27,7 @@ c = 0
 #Loop for extracting emails for google search results
 for query in dork_query:  #change it with "for query in dork_query:"
 
+    temp_email = []
     print(c+1)
 
     c = c + 1
@@ -54,6 +55,7 @@ for query in dork_query:  #change it with "for query in dork_query:"
             if dist[len(dist)-1]==".":
                 dist = dist[:len(dist)-1]
             emails.append(dist)
+            temp_email.append(dist)
             #print(dist)
             #with open("Emails.txt", 'w') as file:
                 #file.write(dist+"\n")
@@ -61,10 +63,13 @@ for query in dork_query:  #change it with "for query in dork_query:"
 
     #Remove duplicates
     emails = list(set(emails))
-    print(emails)
-    with open("raw_emails.txt", 'w') as file:
-        for email in emails:
-            file.write(email+"\n")
+    temp_email = list(set(temp_email))
+    for em in temp_email:
+        print(em)
+        
+    with open("raw_emails.txt", 'a') as file:
+        for temp in temp_email:
+            file.write(temp+"\n")
                        
     #Cooldown time
     sleep(randint(10,100))
